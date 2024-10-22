@@ -5,6 +5,7 @@ import java.util.function.BiFunction;
 
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -90,7 +91,7 @@ import net.povstalec.sgjourney.common.world.biomemod.BiomeModifiers;
 public class StargateJourney
 {
     public static final String MODID = "sgjourney";
-    public static final ResourceLocation EMPTY_LOCATION = new ResourceLocation(MODID, "empty");
+    public static final ResourceLocation EMPTY_LOCATION = ResourceLocation.fromNamespaceAndPath(MODID, "empty");
     public static final String EMPTY = EMPTY_LOCATION.toString();
     
     public static final String STELLAR_VIEW_MODID = "stellarview";
@@ -189,27 +190,8 @@ public class StargateJourney
             ItemBlockRenderTypes.setRenderLayer(FluidInit.LIQUID_NAQUADAH_FLOWING.get(), RenderType.translucent());
             ItemBlockRenderTypes.setRenderLayer(FluidInit.HEAVY_LIQUID_NAQUADAH_SOURCE.get(), RenderType.translucent());
             ItemBlockRenderTypes.setRenderLayer(FluidInit.HEAVY_LIQUID_NAQUADAH_FLOWING.get(), RenderType.translucent());
-
-        	MenuScreens.register(MenuInit.INTERFACE.get(), InterfaceScreen::new);
-            
-        	MenuScreens.register(MenuInit.RING_PANEL.get(), RingPanelScreen::new);
-
-        	MenuScreens.register(MenuInit.DHD_CRYSTAL.get(), DHDCrystalScreen::new);
-        	MenuScreens.register(MenuInit.MILKY_WAY_DHD.get(), MilkyWayDHDScreen::new);
-        	MenuScreens.register(MenuInit.PEGASUS_DHD.get(), PegasusDHDScreen::new);
-        	MenuScreens.register(MenuInit.CLASSIC_DHD.get(), ClassicDHDScreen::new);
-
-        	MenuScreens.register(MenuInit.NAQUADAH_GENERATOR.get(), NaquadahGeneratorScreen::new);
-
-        	MenuScreens.register(MenuInit.ZPM_HUB.get(), ZPMHubScreen::new);
-
-        	MenuScreens.register(MenuInit.NAQUADAH_LIQUIDIZER.get(), LiquidizerScreen.LiquidNaquadah::new);
-        	MenuScreens.register(MenuInit.HEAVY_NAQUADAH_LIQUIDIZER.get(), LiquidizerScreen.HeavyLiquidNaquadah::new);
-        	MenuScreens.register(MenuInit.CRYSTALLIZER.get(), CrystallizerScreen::new);
         	
         	EntityRenderers.register(EntityInit.JAFFA_PLASMA.get(), PlasmaProjectileRenderer::new);
-
-        	MenuScreens.register(MenuInit.TRANSCEIVER.get(), TransceiverScreen::new);
         	
         	//EntityRenderers.register(EntityInit.GOAULD.get(), GoauldRenderer::new);
         	
@@ -243,6 +225,28 @@ public class StargateJourney
         public static void registerClientReloadListener(RegisterClientReloadListenersEvent event)
         {
     		ResourcepackReloadListener.ReloadListener.registerReloadListener(event);
+        }
+
+        @SubscribeEvent
+        public static void registerMenuScreens(RegisterMenuScreensEvent event) {
+            event.register(MenuInit.INTERFACE.get(), InterfaceScreen::new);
+
+            event.register(MenuInit.RING_PANEL.get(), RingPanelScreen::new);
+
+            event.register(MenuInit.DHD_CRYSTAL.get(), DHDCrystalScreen::new);
+            event.register(MenuInit.MILKY_WAY_DHD.get(), MilkyWayDHDScreen::new);
+            event.register(MenuInit.PEGASUS_DHD.get(), PegasusDHDScreen::new);
+            event.register(MenuInit.CLASSIC_DHD.get(), ClassicDHDScreen::new);
+
+            event.register(MenuInit.NAQUADAH_GENERATOR.get(), NaquadahGeneratorScreen::new);
+
+            event.register(MenuInit.ZPM_HUB.get(), ZPMHubScreen::new);
+
+            event.register(MenuInit.NAQUADAH_LIQUIDIZER.get(), LiquidizerScreen.LiquidNaquadah::new);
+            event.register(MenuInit.HEAVY_NAQUADAH_LIQUIDIZER.get(), LiquidizerScreen.HeavyLiquidNaquadah::new);
+            event.register(MenuInit.CRYSTALLIZER.get(), CrystallizerScreen::new);
+
+            event.register(MenuInit.TRANSCEIVER.get(), TransceiverScreen::new);
         }
     }
     

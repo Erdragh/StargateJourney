@@ -19,7 +19,8 @@ import net.povstalec.sgjourney.StargateJourney;
 public class WormholeTravelCriterion extends SimpleCriterionTrigger<WormholeTravelCriterion.WormholeTravelTrigger>
 {
 	public static final WormholeTravelCriterion INSTANCE = new WormholeTravelCriterion();
-	private static final ResourceLocation CRITERION_ID = new ResourceLocation(StargateJourney.MODID, "stargate_wormhole_travel");
+	public static final String NAME = "stargate_wormhole_travel";
+	private static final ResourceLocation CRITERION_ID = ResourceLocation.fromNamespaceAndPath(StargateJourney.MODID, NAME);
 	
 	@Override
 	protected WormholeTravelTrigger createInstance(JsonObject obj, ContextAwarePredicate playerPredicate, DeserializationContext predicateDeserializer)

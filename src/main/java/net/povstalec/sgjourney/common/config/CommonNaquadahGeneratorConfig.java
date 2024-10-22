@@ -1,22 +1,22 @@
 package net.povstalec.sgjourney.common.config;
 
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 public class CommonNaquadahGeneratorConfig
 {
-	public static NeoForgeConfigSpec.IntValue naquadah_rod_max_fuel;
+	public static ModConfigSpec.IntValue naquadah_rod_max_fuel;
 	
-	public static NeoForgeConfigSpec.LongValue naquadah_generator_mark_i_reaction_time;
-	public static NeoForgeConfigSpec.LongValue naquadah_generator_mark_i_energy_per_tick;
-	public static NeoForgeConfigSpec.LongValue naquadah_generator_mark_i_capacity;
-	public static NeoForgeConfigSpec.LongValue naquadah_generator_mark_i_max_transfer;
+	public static ModConfigSpec.LongValue naquadah_generator_mark_i_reaction_time;
+	public static ModConfigSpec.LongValue naquadah_generator_mark_i_energy_per_tick;
+	public static ModConfigSpec.LongValue naquadah_generator_mark_i_capacity;
+	public static ModConfigSpec.LongValue naquadah_generator_mark_i_max_transfer;
 	
-	public static NeoForgeConfigSpec.LongValue naquadah_generator_mark_ii_reaction_time;
-	public static NeoForgeConfigSpec.LongValue naquadah_generator_mark_ii_energy_per_tick;
-	public static NeoForgeConfigSpec.LongValue naquadah_generator_mark_ii_capacity;
-	public static NeoForgeConfigSpec.LongValue naquadah_generator_mark_ii_max_transfer;
+	public static ModConfigSpec.LongValue naquadah_generator_mark_ii_reaction_time;
+	public static ModConfigSpec.LongValue naquadah_generator_mark_ii_energy_per_tick;
+	public static ModConfigSpec.LongValue naquadah_generator_mark_ii_capacity;
+	public static ModConfigSpec.LongValue naquadah_generator_mark_ii_max_transfer;
 	
-	public static void init(NeoForgeConfigSpec.Builder server)
+	public static void init(ModConfigSpec.Builder server)
 	{
 		naquadah_rod_max_fuel = server
 				.comment("The maximum amount of fuel stored in a single Naquadah Fuel Rod")

@@ -1,19 +1,19 @@
 package net.povstalec.sgjourney.common.config;
 
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 public class CommonGenerationConfig
 {
 	//public static SGJourneyConfigValue.BooleanValue common_stargate_generation;
 
-	public static NeoForgeConfigSpec.IntValue stargate_generation_center_x_chunk_offset;
-	public static NeoForgeConfigSpec.IntValue stargate_generation_center_z_chunk_offset;
-	public static NeoForgeConfigSpec.IntValue stargate_generation_x_bound;
-	public static NeoForgeConfigSpec.IntValue stargate_generation_z_bound;
-	public static NeoForgeConfigSpec.IntValue buried_stargate_generation_x_bound;
-	public static NeoForgeConfigSpec.IntValue buried_stargate_generation_z_bound;
+	public static ModConfigSpec.IntValue stargate_generation_center_x_chunk_offset;
+	public static ModConfigSpec.IntValue stargate_generation_center_z_chunk_offset;
+	public static ModConfigSpec.IntValue stargate_generation_x_bound;
+	public static ModConfigSpec.IntValue stargate_generation_z_bound;
+	public static ModConfigSpec.IntValue buried_stargate_generation_x_bound;
+	public static ModConfigSpec.IntValue buried_stargate_generation_z_bound;
 	
-	public static void init(NeoForgeConfigSpec.Builder server)
+	public static void init(ModConfigSpec.Builder server)
 	{
 		/*common_stargate_generation = new SGJourneyConfigValue.BooleanValue(server, "server.common_stargate_generation", 
 				false,

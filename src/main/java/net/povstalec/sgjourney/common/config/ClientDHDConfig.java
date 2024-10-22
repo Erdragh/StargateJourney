@@ -1,13 +1,13 @@
 package net.povstalec.sgjourney.common.config;
 
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 public class ClientDHDConfig
 {
-	public static NeoForgeConfigSpec.BooleanValue milky_way_dhd_canon_symbol_positions;
-	public static NeoForgeConfigSpec.BooleanValue pegasus_dhd_canon_symbol_positions;
+	public static ModConfigSpec.BooleanValue milky_way_dhd_canon_symbol_positions;
+	public static ModConfigSpec.BooleanValue pegasus_dhd_canon_symbol_positions;
 	
-	public static void init(NeoForgeConfigSpec.Builder client)
+	public static void init(ModConfigSpec.Builder client)
 	{
 		milky_way_dhd_canon_symbol_positions = client
 				.comment("If true, Milky Way DHD symbol positions won't be ordered and instead be based on the canon")

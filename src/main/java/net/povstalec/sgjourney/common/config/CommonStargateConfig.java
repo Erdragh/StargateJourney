@@ -1,57 +1,57 @@
 package net.povstalec.sgjourney.common.config;
 
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 import net.povstalec.sgjourney.common.stargate.Stargate.ChevronLockSpeed;
 import net.povstalec.sgjourney.common.stargate.Stargate.WormholeTravel;
 
 public class CommonStargateConfig
 {
-	public static NeoForgeConfigSpec.BooleanValue stargate_loads_chunk_when_connected;
+	public static ModConfigSpec.BooleanValue stargate_loads_chunk_when_connected;
 	
-	public static NeoForgeConfigSpec.IntValue max_wormhole_open_time;
-	public static NeoForgeConfigSpec.BooleanValue end_connection_from_both_ends;
-	public static NeoForgeConfigSpec.EnumValue<WormholeTravel> two_way_wormholes;
-	public static NeoForgeConfigSpec.BooleanValue reverse_wormhole_kills;
+	public static ModConfigSpec.IntValue max_wormhole_open_time;
+	public static ModConfigSpec.BooleanValue end_connection_from_both_ends;
+	public static ModConfigSpec.EnumValue<WormholeTravel> two_way_wormholes;
+	public static ModConfigSpec.BooleanValue reverse_wormhole_kills;
 	
-	public static NeoForgeConfigSpec.BooleanValue kawoosh_destroys_blocks;
-	public static NeoForgeConfigSpec.BooleanValue kawoosh_disintegrates_items;
-	public static NeoForgeConfigSpec.BooleanValue kawoosh_disintegrates_entities;
+	public static ModConfigSpec.BooleanValue kawoosh_destroys_blocks;
+	public static ModConfigSpec.BooleanValue kawoosh_disintegrates_items;
+	public static ModConfigSpec.BooleanValue kawoosh_disintegrates_entities;
 	
-	public static NeoForgeConfigSpec.BooleanValue enable_redstone_dialing;
-	public static NeoForgeConfigSpec.BooleanValue always_display_stargate_id;
-	public static NeoForgeConfigSpec.IntValue max_obstructive_blocks;
+	public static ModConfigSpec.BooleanValue enable_redstone_dialing;
+	public static ModConfigSpec.BooleanValue always_display_stargate_id;
+	public static ModConfigSpec.IntValue max_obstructive_blocks;
 	
-	public static NeoForgeConfigSpec.BooleanValue allow_interstellar_8_chevron_addresses;
-	public static NeoForgeConfigSpec.BooleanValue allow_system_wide_connections;
+	public static ModConfigSpec.BooleanValue allow_interstellar_8_chevron_addresses;
+	public static ModConfigSpec.BooleanValue allow_system_wide_connections;
 
-	public static NeoForgeConfigSpec.BooleanValue enable_address_choice;
-	public static NeoForgeConfigSpec.BooleanValue enable_classic_stargate_upgrades;
-	public static NeoForgeConfigSpec.BooleanValue enable_stargate_variants;
+	public static ModConfigSpec.BooleanValue enable_address_choice;
+	public static ModConfigSpec.BooleanValue enable_classic_stargate_upgrades;
+	public static ModConfigSpec.BooleanValue enable_stargate_variants;
 
-	public static NeoForgeConfigSpec.BooleanValue universe_best_direction;
-	public static NeoForgeConfigSpec.BooleanValue universe_fast_rotation;
+	public static ModConfigSpec.BooleanValue universe_best_direction;
+	public static ModConfigSpec.BooleanValue universe_fast_rotation;
 	
-	public static NeoForgeConfigSpec.EnumValue<ChevronLockSpeed> universe_chevron_lock_speed;
-	public static NeoForgeConfigSpec.EnumValue<ChevronLockSpeed> milky_way_chevron_lock_speed;
-	public static NeoForgeConfigSpec.EnumValue<ChevronLockSpeed> pegasus_chevron_lock_speed;
-	public static NeoForgeConfigSpec.EnumValue<ChevronLockSpeed> classic_chevron_lock_speed;
-	public static NeoForgeConfigSpec.EnumValue<ChevronLockSpeed> tollan_chevron_lock_speed;
+	public static ModConfigSpec.EnumValue<ChevronLockSpeed> universe_chevron_lock_speed;
+	public static ModConfigSpec.EnumValue<ChevronLockSpeed> milky_way_chevron_lock_speed;
+	public static ModConfigSpec.EnumValue<ChevronLockSpeed> pegasus_chevron_lock_speed;
+	public static ModConfigSpec.EnumValue<ChevronLockSpeed> classic_chevron_lock_speed;
+	public static ModConfigSpec.EnumValue<ChevronLockSpeed> tollan_chevron_lock_speed;
 	
 	// Energy Related
-	public static NeoForgeConfigSpec.BooleanValue enable_energy_bypass;
-	public static NeoForgeConfigSpec.BooleanValue can_draw_power_from_both_ends;
+	public static ModConfigSpec.BooleanValue enable_energy_bypass;
+	public static ModConfigSpec.BooleanValue can_draw_power_from_both_ends;
 
-	public static NeoForgeConfigSpec.LongValue system_wide_connection_energy_draw;
-	public static NeoForgeConfigSpec.LongValue interstellar_connection_energy_draw;
-	public static NeoForgeConfigSpec.LongValue intergalactic_connection_energy_draw;
-	public static NeoForgeConfigSpec.LongValue system_wide_connection_energy_cost;
-	public static NeoForgeConfigSpec.LongValue interstellar_connection_energy_cost;
-	public static NeoForgeConfigSpec.LongValue intergalactic_connection_energy_cost;
-	public static NeoForgeConfigSpec.LongValue stargate_energy_capacity;
-	public static NeoForgeConfigSpec.LongValue stargate_energy_max_receive;
-	public static NeoForgeConfigSpec.IntValue energy_bypass_multiplier;
+	public static ModConfigSpec.LongValue system_wide_connection_energy_draw;
+	public static ModConfigSpec.LongValue interstellar_connection_energy_draw;
+	public static ModConfigSpec.LongValue intergalactic_connection_energy_draw;
+	public static ModConfigSpec.LongValue system_wide_connection_energy_cost;
+	public static ModConfigSpec.LongValue interstellar_connection_energy_cost;
+	public static ModConfigSpec.LongValue intergalactic_connection_energy_cost;
+	public static ModConfigSpec.LongValue stargate_energy_capacity;
+	public static ModConfigSpec.LongValue stargate_energy_max_receive;
+	public static ModConfigSpec.IntValue energy_bypass_multiplier;
 	
-	public static void init(NeoForgeConfigSpec.Builder server)
+	public static void init(ModConfigSpec.Builder server)
 	{
 		stargate_loads_chunk_when_connected = server
 				.comment("If true, Stargate will load the chunk it's in while it's connected to another Stargate")

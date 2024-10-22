@@ -7,6 +7,6 @@ public class AdvancementInit
 {
 	public static void register()
 	{
-		CriteriaTriggers.register(WormholeTravelCriterion.INSTANCE);
+		CriteriaTriggers.register(WormholeTravelCriterion.NAME, WormholeTravelCriterion.INSTANCE);
 	}
 }

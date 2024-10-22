@@ -1,21 +1,21 @@
 package net.povstalec.sgjourney.common.config;
 
-import java.io.File;
-
 import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 import com.electronwill.nightconfig.core.io.WritingMode;
-import net.neoforged.fml.common.Mod;
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.common.ModConfigSpec;
 import net.povstalec.sgjourney.StargateJourney;
 
-@Mod.EventBusSubscriber
+import java.io.File;
+
+@EventBusSubscriber
 public class StargateJourneyConfig
 {
-	private static final NeoForgeConfigSpec.Builder COMMON_BUILDER = new NeoForgeConfigSpec.Builder();
-	public static final NeoForgeConfigSpec COMMON_CONFIG;
+	private static final ModConfigSpec.Builder COMMON_BUILDER = new ModConfigSpec.Builder();
+	public static final ModConfigSpec COMMON_CONFIG;
 	
-	private static final NeoForgeConfigSpec.Builder CLIENT_BUILDER = new NeoForgeConfigSpec.Builder();
-	public static final NeoForgeConfigSpec CLIENT_CONFIG;
+	private static final ModConfigSpec.Builder CLIENT_BUILDER = new ModConfigSpec.Builder();
+	public static final ModConfigSpec CLIENT_CONFIG;
 	
 	public static SGJourneyConfigValue.BooleanValue disable_energy_use;
 	public static SGJourneyConfigValue.BooleanValue disable_smooth_animations;
@@ -91,17 +91,17 @@ public class StargateJourneyConfig
 		CLIENT_CONFIG = CLIENT_BUILDER.build();
 	}
 	
-	public static void loadConfig(NeoForgeConfigSpec config, String path)
+	public static void loadConfig(ModConfigSpec config, String path)
 	{
 		StargateJourney.LOGGER.info("Loading Config: " + path);
 		final CommentedFileConfig file = CommentedFileConfig.builder(new File(path)).sync().autosave().writingMode(WritingMode.REPLACE).build();
 		StargateJourney.LOGGER.info("Built config: " + path);
 		file.load();
 		StargateJourney.LOGGER.info("Loaded Config: " + path);
-		config.setConfig(file);
+		config.correct(file);
 	}
 	
-	private static void generalServerConfig(NeoForgeConfigSpec.Builder server)
+	private static void generalServerConfig(ModConfigSpec.Builder server)
 	{
 		server.comment("Stargate Journey General Config");
 		
@@ -110,7 +110,7 @@ public class StargateJourneyConfig
 				"Disable energy requirements for blocks added by Stargate Journey");
 	}
 	
-	private static void generalClientConfig(NeoForgeConfigSpec.Builder client)
+	private static void generalClientConfig(ModConfigSpec.Builder client)
 	{
 		client.comment("Stargate Journey Client Config");
 		

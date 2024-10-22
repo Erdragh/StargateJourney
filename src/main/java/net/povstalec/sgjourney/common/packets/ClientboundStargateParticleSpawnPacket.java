@@ -11,7 +11,7 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.RegistryOps;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.network.NetworkEvent;
+import net.neoforged.neoforge.network.NetworkEvent;
 import net.povstalec.sgjourney.client.ClientAccess;
 import net.povstalec.sgjourney.common.blockstates.StargatePart;
 

@@ -13,15 +13,15 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.IFluidHandler;
-import net.minecraftforge.fluids.capability.templates.FluidTank;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.network.PacketDistributor;
+import net.neoforged.neoforge.common.capabilities.Capabilities;
+import net.neoforged.neoforge.common.capabilities.Capability;
+import net.neoforged.neoforge.common.util.LazyOptional;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.ItemStackHandler;
+import net.neoforged.neoforge.network.PacketDistributor;
 import net.povstalec.sgjourney.common.block_entities.EnergyBlockEntity;
 import net.povstalec.sgjourney.common.init.PacketHandlerInit;
 import net.povstalec.sgjourney.common.packets.ClientboundCrystallizerUpdatePacket;
@@ -88,10 +88,10 @@ public abstract class AbstractCrystallizerEntity extends EnergyBlockEntity
 	@Override
 	public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> capability, Direction side)
 	{
-		if(capability == ForgeCapabilities.FLUID_HANDLER)
+		if(capability == Capabilities.FLUID_HANDLER)
 			return lazyFluidHandler.cast();
 		
-		else if(capability == ForgeCapabilities.ITEM_HANDLER)
+		else if(capability == Capabilities.ITEM_HANDLER)
 			return handler.cast();
 		
 		return super.getCapability(capability, side);
@@ -148,7 +148,7 @@ public abstract class AbstractCrystallizerEntity extends EnergyBlockEntity
 					return switch(slot)
 					{
 						case 3 -> false;
-						case 4 -> stack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).isPresent();
+						case 4 -> stack.getCapability(Capabilities.FLUID_HANDLER_ITEM).isPresent();
 						default -> true;
 					};
 				}
@@ -181,7 +181,7 @@ public abstract class AbstractCrystallizerEntity extends EnergyBlockEntity
 	
 	public void drainFluidFromItem()
 	{
-		itemHandler.getStackInSlot(4).getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).ifPresent(handler ->
+		itemHandler.getStackInSlot(4).getCapability(Capabilities.FLUID_HANDLER_ITEM).ifPresent(handler ->
 		{
 			int drainAmount = Math.min(fluidTank.getSpace(), 1000);
 			FluidStack stack = handler.getFluidInTank(0);

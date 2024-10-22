@@ -1,21 +1,21 @@
 package net.povstalec.sgjourney.common.config;
 
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.neoforge.common.NeoForgeConfigSpec;
 
 public class CommonInterfaceConfig
 {
-	public static ForgeConfigSpec.LongValue default_energy_target;
+	public static NeoForgeConfigSpec.LongValue default_energy_target;
 	
-	public static ForgeConfigSpec.LongValue basic_interface_capacity;
-	public static ForgeConfigSpec.LongValue basic_interface_max_transfer;
+	public static NeoForgeConfigSpec.LongValue basic_interface_capacity;
+	public static NeoForgeConfigSpec.LongValue basic_interface_max_transfer;
 	
-	public static ForgeConfigSpec.LongValue crystal_interface_capacity;
-	public static ForgeConfigSpec.LongValue crystal_interface_max_transfer;
+	public static NeoForgeConfigSpec.LongValue crystal_interface_capacity;
+	public static NeoForgeConfigSpec.LongValue crystal_interface_max_transfer;
 	
-	public static ForgeConfigSpec.LongValue advanced_crystal_interface_capacity;
-	public static ForgeConfigSpec.LongValue advanced_crystal_interface_max_transfer;
+	public static NeoForgeConfigSpec.LongValue advanced_crystal_interface_capacity;
+	public static NeoForgeConfigSpec.LongValue advanced_crystal_interface_max_transfer;
 	
-	public static void init(ForgeConfigSpec.Builder server)
+	public static void init(NeoForgeConfigSpec.Builder server)
 	{
 		default_energy_target = server
 				.comment("The default amount of energy the Interface will try to provide until it stops")

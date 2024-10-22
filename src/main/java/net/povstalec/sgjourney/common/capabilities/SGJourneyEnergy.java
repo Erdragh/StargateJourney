@@ -2,7 +2,7 @@ package net.povstalec.sgjourney.common.capabilities;
 
 import net.minecraft.nbt.LongTag;
 import net.minecraft.nbt.Tag;
-import net.minecraftforge.energy.EnergyStorage;
+import net.neoforged.neoforge.energy.EnergyStorage;
 
 public abstract class SGJourneyEnergy extends EnergyStorage
 {

@@ -11,10 +11,10 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.energy.IEnergyStorage;
+import net.neoforged.neoforge.common.capabilities.Capabilities;
+import net.neoforged.neoforge.common.capabilities.Capability;
+import net.neoforged.neoforge.common.util.LazyOptional;
+import net.neoforged.neoforge.energy.IEnergyStorage;
 import net.povstalec.sgjourney.common.capabilities.SGJourneyEnergy;
 
 public abstract class EnergyBlockEntity extends BlockEntity
@@ -68,7 +68,7 @@ public abstract class EnergyBlockEntity extends BlockEntity
 	@Override
 	public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> capability, Direction side)
 	{
-		if(capability == ForgeCapabilities.ENERGY && isCorrectEnergySide(side))
+		if(capability == Capabilities.ENERGY && isCorrectEnergySide(side))
 			return lazyEnergyHandler.cast();
 		
 		return super.getCapability(capability, side);
@@ -239,7 +239,7 @@ public abstract class EnergyBlockEntity extends BlockEntity
 			}
 			else
 			{
-				blockentity.getCapability(ForgeCapabilities.ENERGY, outputDirection.getOpposite()).ifPresent((energyStorage) ->
+				blockentity.getCapability(Capabilities.ENERGY, outputDirection.getOpposite()).ifPresent((energyStorage) ->
 				{
 					int simulatedOutputAmount = ENERGY_STORAGE.extractEnergy(SGJourneyEnergy.getRegularEnergy(ENERGY_STORAGE.maxExtract()), true);
 					int simulatedReceiveAmount = energyStorage.receiveEnergy(simulatedOutputAmount, true);

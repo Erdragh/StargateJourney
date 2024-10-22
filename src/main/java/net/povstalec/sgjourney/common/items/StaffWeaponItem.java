@@ -30,9 +30,9 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.fluids.FluidStack;
+import net.neoforged.neoforge.common.capabilities.Capabilities;
+import net.neoforged.neoforge.common.capabilities.ICapabilityProvider;
+import net.neoforged.neoforge.fluids.FluidStack;
 import net.povstalec.sgjourney.common.capabilities.ItemInventoryProvider;
 import net.povstalec.sgjourney.common.entities.PlasmaProjectile;
 import net.povstalec.sgjourney.common.init.EntityInit;
@@ -126,7 +126,7 @@ public class StaffWeaponItem extends Item
 			// Reloading
 			if(offHandStack.is(ItemInit.MATOK.get()) && !level.isClientSide())
 			{
-				offHandStack.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(itemHandler ->
+				offHandStack.getCapability(Capabilities.ITEM_HANDLER).ifPresent(itemHandler ->
 				{
 					ItemStack returnStack;
 					if(mainHandStack.isEmpty())
@@ -203,7 +203,7 @@ public class StaffWeaponItem extends Item
 	
 	public FluidStack getFluidStack(ItemStack staffWeaponItemStack)
 	{
-		Optional<FluidStack> optional = staffWeaponItemStack.getCapability(ForgeCapabilities.ITEM_HANDLER).map(itemHandler -> 
+		Optional<FluidStack> optional = staffWeaponItemStack.getCapability(Capabilities.ITEM_HANDLER).map(itemHandler -> 
 		{
 			ItemStack inventoryStack = itemHandler.getStackInSlot(0);
 			if(inventoryStack.is(ItemInit.VIAL.get()))
@@ -243,7 +243,7 @@ public class StaffWeaponItem extends Item
 	 */
 	public boolean depleteLiquidNaquadah(ItemStack staffWeaponItemStack)
 	{
-		Optional<Boolean> drained = staffWeaponItemStack.getCapability(ForgeCapabilities.ITEM_HANDLER).map(itemHandler -> 
+		Optional<Boolean> drained = staffWeaponItemStack.getCapability(Capabilities.ITEM_HANDLER).map(itemHandler -> 
 		{
 			ItemStack inventoryStack = itemHandler.getStackInSlot(0);
 			if(inventoryStack.is(ItemInit.VIAL.get()))

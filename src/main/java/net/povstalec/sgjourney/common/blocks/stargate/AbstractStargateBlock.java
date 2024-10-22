@@ -47,7 +47,7 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.ForgeHooks;
+import net.neoforged.neoforge.common.CommonHooks;
 import net.povstalec.sgjourney.StargateJourney;
 import net.povstalec.sgjourney.common.block_entities.stargate.AbstractStargateEntity;
 import net.povstalec.sgjourney.common.blocks.stargate.shielding.AbstractShieldingBlock;
@@ -408,7 +408,7 @@ public abstract class AbstractStargateBlock extends Block implements SimpleWater
 					
 					if(coverState.isPresent())
 					{
-						float multiplier = ForgeHooks.isCorrectToolForDrops(coverState.get(), player) ? 30F : 100F;
+						float multiplier = CommonHooks.isCorrectToolForDrops(coverState.get(), player) ? 30F : 100F;
 						
 						return player.getDigSpeed(coverState.get(), pos) / destroySpeed / multiplier;
 					}

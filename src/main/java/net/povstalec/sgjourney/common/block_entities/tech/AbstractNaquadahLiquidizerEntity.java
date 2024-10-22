@@ -13,15 +13,15 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.IFluidHandler;
-import net.minecraftforge.fluids.capability.templates.FluidTank;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.network.PacketDistributor;
+import net.neoforged.neoforge.common.capabilities.Capabilities;
+import net.neoforged.neoforge.common.capabilities.Capability;
+import net.neoforged.neoforge.common.util.LazyOptional;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.ItemStackHandler;
+import net.neoforged.neoforge.network.PacketDistributor;
 import net.povstalec.sgjourney.common.init.PacketHandlerInit;
 import net.povstalec.sgjourney.common.packets.ClientboundNaquadahLiquidizerUpdatePacket;
 
@@ -95,7 +95,7 @@ public abstract class AbstractNaquadahLiquidizerEntity extends BlockEntity
 	@Override
 	public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> capability, Direction side)
 	{
-		if(capability == ForgeCapabilities.FLUID_HANDLER)
+		if(capability == Capabilities.FLUID_HANDLER)
 		{
 			if(side == Direction.UP)
 				return lazyFluidHandler1.cast();
@@ -103,7 +103,7 @@ public abstract class AbstractNaquadahLiquidizerEntity extends BlockEntity
 				return lazyFluidHandler2.cast();
 		}
 		
-		else if(capability == ForgeCapabilities.ITEM_HANDLER)
+		else if(capability == Capabilities.ITEM_HANDLER)
 			return handler.cast();
 		
 		return super.getCapability(capability, side);
@@ -189,7 +189,7 @@ public abstract class AbstractNaquadahLiquidizerEntity extends BlockEntity
 					return switch(slot)
 					{
 						case 0 -> true;
-						default -> stack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).isPresent();
+						default -> stack.getCapability(Capabilities.FLUID_HANDLER_ITEM).isPresent();
 					};
 				}
 				
@@ -231,7 +231,7 @@ public abstract class AbstractNaquadahLiquidizerEntity extends BlockEntity
 	
 	public void drainFluidFromItem()
 	{
-		itemHandler.getStackInSlot(1).getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).ifPresent(handler ->
+		itemHandler.getStackInSlot(1).getCapability(Capabilities.FLUID_HANDLER_ITEM).ifPresent(handler ->
 		{
 			int drainAmount = Math.min(fluidTank1.getSpace(), 1000);
 			FluidStack fluidStack = handler.getFluidInTank(0);
@@ -248,7 +248,7 @@ public abstract class AbstractNaquadahLiquidizerEntity extends BlockEntity
 	{
 		ItemStack stack = itemHandler.getStackInSlot(2);
 		
-		stack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).ifPresent(handler ->
+		stack.getCapability(Capabilities.FLUID_HANDLER_ITEM).ifPresent(handler ->
 		{
 			if(!handler.isFluidValid(0, getFluid2()))
 				return;

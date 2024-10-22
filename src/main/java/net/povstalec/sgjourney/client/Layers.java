@@ -2,7 +2,7 @@ package net.povstalec.sgjourney.client;
 
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.povstalec.sgjourney.StargateJourney;
 import net.povstalec.sgjourney.client.models.FalconArmorModel;
 import net.povstalec.sgjourney.client.models.JackalArmorModel;

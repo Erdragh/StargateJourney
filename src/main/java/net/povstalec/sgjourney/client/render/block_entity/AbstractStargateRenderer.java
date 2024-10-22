@@ -17,7 +17,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.client.model.data.ModelData;
+import net.neoforged.neoforge.client.model.data.ModelData;
 import net.povstalec.sgjourney.client.models.IrisModel;
 import net.povstalec.sgjourney.client.models.ShieldModel;
 import net.povstalec.sgjourney.client.models.WormholeModel;

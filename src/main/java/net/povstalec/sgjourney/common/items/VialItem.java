@@ -14,11 +14,11 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
-import net.minecraftforge.fluids.capability.templates.FluidHandlerItemStack;
+import net.neoforged.neoforge.common.capabilities.Capabilities;
+import net.neoforged.neoforge.common.capabilities.ICapabilityProvider;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction;
+import net.neoforged.neoforge.fluids.capability.templates.FluidHandlerItemStack;
 import net.povstalec.sgjourney.common.init.FluidInit;
 import net.povstalec.sgjourney.common.init.ItemInit;
 
@@ -49,7 +49,7 @@ public class VialItem extends Item
 	{
 		ItemStack stack = new ItemStack(ItemInit.VIAL.get());
         
-        stack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).ifPresent(fluidHandler ->
+        stack.getCapability(Capabilities.FLUID_HANDLER_ITEM).ifPresent(fluidHandler ->
         {
         	fluidHandler.fill(new FluidStack(FluidInit.LIQUID_NAQUADAH_SOURCE.get().getSource(), MAX_CAPACITY), FluidAction.EXECUTE);
         });
@@ -61,7 +61,7 @@ public class VialItem extends Item
 	{
 		ItemStack stack = new ItemStack(ItemInit.VIAL.get());
         
-        stack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).ifPresent(fluidHandler ->
+        stack.getCapability(Capabilities.FLUID_HANDLER_ITEM).ifPresent(fluidHandler ->
         {
         	fluidHandler.fill(new FluidStack(FluidInit.HEAVY_LIQUID_NAQUADAH_SOURCE.get().getSource(), MAX_CAPACITY), FluidAction.EXECUTE);
         });
@@ -88,14 +88,14 @@ public class VialItem extends Item
 	
 	public static FluidStack getFluidStack(ItemStack stack)
 	{
-		Optional<FluidStack> fluid = stack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).map(fluidHandler -> fluidHandler.getFluidInTank(0));
+		Optional<FluidStack> fluid = stack.getCapability(Capabilities.FLUID_HANDLER_ITEM).map(fluidHandler -> fluidHandler.getFluidInTank(0));
 		
 		return fluid.isPresent() ? fluid.get() : FluidStack.EMPTY;
 	}
 	
 	public static void drainNaquadah(ItemStack stack, int amount)
 	{
-		stack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).ifPresent(fluidHandler -> 
+		stack.getCapability(Capabilities.FLUID_HANDLER_ITEM).ifPresent(fluidHandler -> 
 		{
 			fluidHandler.drain(amount, FluidAction.EXECUTE);
 		});

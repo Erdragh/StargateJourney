@@ -4,19 +4,18 @@ import java.io.File;
 
 import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 import com.electronwill.nightconfig.core.io.WritingMode;
-
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.common.NeoForgeConfigSpec;
 import net.povstalec.sgjourney.StargateJourney;
 
 @Mod.EventBusSubscriber
 public class StargateJourneyConfig
 {
-	private static final ForgeConfigSpec.Builder COMMON_BUILDER = new ForgeConfigSpec.Builder();
-	public static final ForgeConfigSpec COMMON_CONFIG;
+	private static final NeoForgeConfigSpec.Builder COMMON_BUILDER = new NeoForgeConfigSpec.Builder();
+	public static final NeoForgeConfigSpec COMMON_CONFIG;
 	
-	private static final ForgeConfigSpec.Builder CLIENT_BUILDER = new ForgeConfigSpec.Builder();
-	public static final ForgeConfigSpec CLIENT_CONFIG;
+	private static final NeoForgeConfigSpec.Builder CLIENT_BUILDER = new NeoForgeConfigSpec.Builder();
+	public static final NeoForgeConfigSpec CLIENT_CONFIG;
 	
 	public static SGJourneyConfigValue.BooleanValue disable_energy_use;
 	public static SGJourneyConfigValue.BooleanValue disable_smooth_animations;
@@ -92,7 +91,7 @@ public class StargateJourneyConfig
 		CLIENT_CONFIG = CLIENT_BUILDER.build();
 	}
 	
-	public static void loadConfig(ForgeConfigSpec config, String path)
+	public static void loadConfig(NeoForgeConfigSpec config, String path)
 	{
 		StargateJourney.LOGGER.info("Loading Config: " + path);
 		final CommentedFileConfig file = CommentedFileConfig.builder(new File(path)).sync().autosave().writingMode(WritingMode.REPLACE).build();
@@ -102,7 +101,7 @@ public class StargateJourneyConfig
 		config.setConfig(file);
 	}
 	
-	private static void generalServerConfig(ForgeConfigSpec.Builder server)
+	private static void generalServerConfig(NeoForgeConfigSpec.Builder server)
 	{
 		server.comment("Stargate Journey General Config");
 		
@@ -111,7 +110,7 @@ public class StargateJourneyConfig
 				"Disable energy requirements for blocks added by Stargate Journey");
 	}
 	
-	private static void generalClientConfig(ForgeConfigSpec.Builder client)
+	private static void generalClientConfig(NeoForgeConfigSpec.Builder client)
 	{
 		client.comment("Stargate Journey Client Config");
 		

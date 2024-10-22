@@ -1,12 +1,12 @@
 package net.povstalec.sgjourney.common.init;
 
 import net.minecraft.world.item.Rarity;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fluids.FluidType;
-import net.minecraftforge.fluids.ForgeFlowingFluid;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.fluids.BaseFlowingFluid;
+import net.neoforged.neoforge.fluids.FluidType;
+import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.RegistryObject;
 import net.povstalec.sgjourney.StargateJourney;
 import net.povstalec.sgjourney.common.fluids.HeavyNaquadahFluidType;
 import net.povstalec.sgjourney.common.fluids.NaquadahFluidType;
@@ -24,7 +24,7 @@ public class FluidTypeInit
 			.supportsBoating(true)
 			.viscosity(100000)));
 	
-	public static final ForgeFlowingFluid.Properties LIQUID_NAQUADAH_PROPERTIES = new ForgeFlowingFluid.Properties(
+	public static final BaseFlowingFluid.Properties LIQUID_NAQUADAH_PROPERTIES = new BaseFlowingFluid.Properties(
 			FluidTypeInit.LIQUID_NAQUADAH_FLUID_TYPE, FluidInit.LIQUID_NAQUADAH_SOURCE, FluidInit.LIQUID_NAQUADAH_FLOWING)
 			.bucket(ItemInit.LIQUID_NAQUADAH_BUCKET)
 			.block(BlockInit.LIQUID_NAQUADAH_BLOCK)
@@ -39,7 +39,7 @@ public class FluidTypeInit
 			.supportsBoating(true)
 			.viscosity(100000)));
 	
-	public static final ForgeFlowingFluid.Properties HEAVY_LIQUID_NAQUADAH_PROPERTIES = new ForgeFlowingFluid.Properties(
+	public static final BaseFlowingFluid.Properties HEAVY_LIQUID_NAQUADAH_PROPERTIES = new BaseFlowingFluid.Properties(
 			FluidTypeInit.HEAVY_LIQUID_NAQUADAH_FLUID_TYPE, FluidInit.HEAVY_LIQUID_NAQUADAH_SOURCE, FluidInit.HEAVY_LIQUID_NAQUADAH_FLOWING)
 			.bucket(ItemInit.HEAVY_LIQUID_NAQUADAH_BUCKET)
 			.block(BlockInit.HEAVY_LIQUID_NAQUADAH_BLOCK)

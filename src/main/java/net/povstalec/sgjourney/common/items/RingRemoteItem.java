@@ -19,8 +19,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.chunk.ChunkAccess;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.neoforged.neoforge.common.capabilities.Capabilities;
+import net.neoforged.neoforge.common.capabilities.ICapabilityProvider;
 import net.povstalec.sgjourney.common.block_entities.tech.TransportRingsEntity;
 import net.povstalec.sgjourney.common.capabilities.ItemInventoryProvider;
 import net.povstalec.sgjourney.common.init.ItemInit;
@@ -109,7 +109,7 @@ public class RingRemoteItem extends Item
 			
 			if(offHandStack.is(ItemInit.RING_REMOTE.get()))
 			{
-				offHandStack.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(itemHandler ->
+				offHandStack.getCapability(Capabilities.ITEM_HANDLER).ifPresent(itemHandler ->
 				{
 					ItemStack returnStack;
 					if(!mainHandStack.isEmpty())
@@ -131,7 +131,7 @@ public class RingRemoteItem extends Item
 			{
 				if(!level.isClientSide())
 				{
-					stack.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(itemHandler ->
+					stack.getCapability(Capabilities.ITEM_HANDLER).ifPresent(itemHandler ->
 					{
 						ItemStack crystalStack = itemHandler.getStackInSlot(0);	
 						
@@ -182,7 +182,7 @@ public class RingRemoteItem extends Item
 	{
 		if(stack.is(ItemInit.RING_REMOTE.get()))
 		{
-			Optional<Boolean> canActivate = stack.getCapability(ForgeCapabilities.ITEM_HANDLER).map(itemHandler -> !itemHandler.getStackInSlot(0).isEmpty());
+			Optional<Boolean> canActivate = stack.getCapability(Capabilities.ITEM_HANDLER).map(itemHandler -> !itemHandler.getStackInSlot(0).isEmpty());
 			
 			return canActivate.isPresent() ? canActivate.get() : false;
 		}
@@ -206,7 +206,7 @@ public class RingRemoteItem extends Item
 	@Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltipComponents, TooltipFlag isAdvanced)
     {
-        stack.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(itemHandler ->
+        stack.getCapability(Capabilities.ITEM_HANDLER).ifPresent(itemHandler ->
         {
         	ItemStack memoryCrystal = itemHandler.getStackInSlot(0);
         	

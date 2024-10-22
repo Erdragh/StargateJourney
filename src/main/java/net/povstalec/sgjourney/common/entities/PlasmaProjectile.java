@@ -11,7 +11,7 @@ import net.minecraft.world.level.block.BaseFireBlock;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
-import net.minecraftforge.event.ForgeEventFactory;
+import net.neoforged.neoforge.event.EventHooks;
 import net.povstalec.sgjourney.common.init.TagInit;
 
 public class PlasmaProjectile extends ThrowableProjectile
@@ -40,7 +40,7 @@ public class PlasmaProjectile extends ThrowableProjectile
 		super.onHit(hitResult);
 		if(!this.level().isClientSide())
 		{
-			boolean canDestroy = ForgeEventFactory.getMobGriefingEvent(this.level(), this.getOwner());
+			boolean canDestroy = EventHooks.getMobGriefingEvent(this.level(), this.getOwner());
 			this.level().explode((Entity)this.getOwner(), this.getX(), this.getY(), this.getZ(), this.explosionPower, canDestroy,
 					canDestroy ? Level.ExplosionInteraction.TNT : Level.ExplosionInteraction.NONE);
 			this.discard();
@@ -70,7 +70,7 @@ public class PlasmaProjectile extends ThrowableProjectile
 		if(!this.level().isClientSide())
 		{
 			Entity entity = this.getOwner();
-			if(!(entity instanceof Mob) || ForgeEventFactory.getMobGriefingEvent(this.level(), entity))
+			if(!(entity instanceof Mob) || EventHooks.getMobGriefingEvent(this.level(), entity))
 			{
 				BlockPos blockpos = result.getBlockPos().relative(result.getDirection());
 				

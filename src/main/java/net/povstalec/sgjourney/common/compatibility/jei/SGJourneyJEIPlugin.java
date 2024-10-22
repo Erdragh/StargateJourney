@@ -19,12 +19,11 @@ import net.povstalec.sgjourney.StargateJourney;
 import net.povstalec.sgjourney.common.init.BlockInit;
 import net.povstalec.sgjourney.common.recipe.AdvancedCrystallizerRecipe;
 import net.povstalec.sgjourney.common.recipe.CrystallizerRecipe;
-import var;
 
 @JeiPlugin
 public class SGJourneyJEIPlugin implements IModPlugin
 {
-	private static final ResourceLocation PLUGIN_LOCATION = new ResourceLocation(StargateJourney.MODID, "jei_plugin");
+	private static final ResourceLocation PLUGIN_LOCATION = ResourceLocation.fromNamespaceAndPath(StargateJourney.MODID, "jei_plugin");
 
 	private static Minecraft minecraft = Minecraft.getInstance();
 	
@@ -56,13 +55,13 @@ public class SGJourneyJEIPlugin implements IModPlugin
 	public void registerRecipeCatalysts(@Nonnull IRecipeCatalystRegistration registration)
 	{
 		// Crystallizers
-		BlockInit.CRYSTALLIZER.ifPresent(crystallizerBlock -> {
+		BlockInit.CRYSTALLIZER.asOptional().ifPresent(crystallizerBlock -> {
 			var item = crystallizerBlock.asItem();
 			if (item != null) {
 				registration.addRecipeCatalyst(new ItemStack(item), CrystallizerRecipeCategory.CRYSTALLIZING_TYPE);
 			}
 		});
-		BlockInit.ADVANCED_CRYSTALLIZER.ifPresent(crystallizerBlock -> {
+		BlockInit.ADVANCED_CRYSTALLIZER.asOptional().ifPresent(crystallizerBlock -> {
 			var item = crystallizerBlock.asItem();
 			if (item != null) {
 				registration.addRecipeCatalyst(new ItemStack(item), AdvancedCrystallizerRecipeCategory.ADVANCED_CRYSTALLIZING_TYPE);

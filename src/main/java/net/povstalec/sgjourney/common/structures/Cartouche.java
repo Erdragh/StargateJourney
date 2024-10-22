@@ -3,6 +3,7 @@ package net.povstalec.sgjourney.common.structures;
 import java.util.Optional;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import net.minecraft.core.BlockPos;
@@ -21,7 +22,7 @@ import net.povstalec.sgjourney.common.init.StructureInit;
 //Structure class is mostly copy-pasted from https://github.com/TelepathicGrunt/StructureTutorialMod/blob/1.19.0-Forge-Jigsaw/src/main/java/com/telepathicgrunt/structuretutorial/StructureTutorialMain.java
 public class Cartouche extends Structure
 {
-    public static final Codec<Cartouche> CODEC = RecordCodecBuilder.<Cartouche>mapCodec(instance ->
+    public static final MapCodec<Cartouche> CODEC = RecordCodecBuilder.mapCodec(instance ->
             instance.group(Cartouche.settingsCodec(instance),
                     StructureTemplatePool.CODEC.fieldOf("start_pool").forGetter(structure -> structure.startPool),
                     ResourceLocation.CODEC.optionalFieldOf("start_jigsaw_name").forGetter(structure -> structure.startJigsawName),
@@ -29,7 +30,7 @@ public class Cartouche extends Structure
                     HeightProvider.CODEC.fieldOf("start_height").forGetter(structure -> structure.startHeight),
                     Heightmap.Types.CODEC.optionalFieldOf("project_start_to_heightmap").forGetter(structure -> structure.projectStartToHeightmap),
                     Codec.intRange(1, 128).fieldOf("max_distance_from_center").forGetter(structure -> structure.maxDistanceFromCenter)
-            ).apply(instance, Cartouche::new)).codec();
+            ).apply(instance, Cartouche::new));
 
     private final Holder<StructureTemplatePool> startPool;
     private final Optional<ResourceLocation> startJigsawName;

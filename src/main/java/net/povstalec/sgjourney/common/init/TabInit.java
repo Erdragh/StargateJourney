@@ -9,8 +9,8 @@ import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import net.neoforged.neoforge.registries.RegistryObject;
 import net.povstalec.sgjourney.StargateJourney;
 import net.povstalec.sgjourney.common.blocks.dhd.MilkyWayDHDBlock;
 import net.povstalec.sgjourney.common.blocks.dhd.PegasusDHDBlock;
@@ -18,11 +18,7 @@ import net.povstalec.sgjourney.common.blocks.stargate.AbstractStargateBaseBlock;
 import net.povstalec.sgjourney.common.blocks.stargate.PegasusStargateBlock;
 import net.povstalec.sgjourney.common.blocks.tech.AbstractTransporterBlock;
 import net.povstalec.sgjourney.common.config.CommonStargateConfig;
-import net.povstalec.sgjourney.common.items.NaquadahFuelRodItem;
-import net.povstalec.sgjourney.common.items.StargateUpgradeItem;
-import net.povstalec.sgjourney.common.items.StargateVariantItem;
-import net.povstalec.sgjourney.common.items.SyringeItem;
-import net.povstalec.sgjourney.common.items.VialItem;
+import net.povstalec.sgjourney.common.items.*;
 import net.povstalec.sgjourney.common.items.armor.PersonalShieldItem;
 import net.povstalec.sgjourney.common.stargate.StargateVariant;
 
@@ -30,17 +26,17 @@ public class TabInit
 {
 	public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =  DeferredRegister.create(Registries.CREATIVE_MODE_TAB, StargateJourney.MODID);
 	
-	public static RegistryObject<CreativeModeTab> STARGATE_ITEMS = CREATIVE_MODE_TABS.register("stargate_items", () ->
+	public static DeferredHolder<CreativeModeTab, CreativeModeTab> STARGATE_ITEMS = CREATIVE_MODE_TABS.register("stargate_items", () ->
 		CreativeModeTab.builder().icon(() -> new ItemStack(ItemInit.NAQUADAH.get()))
 		.title(Component.translatable("itemGroup.stargate_items")).build());
 
-	public static RegistryObject<CreativeModeTab> STARGATE_STUFF = CREATIVE_MODE_TABS.register("stargate_stuff", () ->
+	public static DeferredHolder<CreativeModeTab, CreativeModeTab> STARGATE_STUFF = CREATIVE_MODE_TABS.register("stargate_stuff", () ->
 		CreativeModeTab.builder().icon(() -> new ItemStack(BlockInit.MILKY_WAY_STARGATE.get()))
 		.title(Component.translatable("itemGroup.stargate_stuff"))
-		.withTabsBefore(new ResourceLocation(StargateJourney.MODID, "stargate_blocks")).withTabsAfter(new ResourceLocation(StargateJourney.MODID, "stargate_items"))
+		.withTabsBefore(ResourceLocation.fromNamespaceAndPath(StargateJourney.MODID, "stargate_blocks")).withTabsAfter(ResourceLocation.fromNamespaceAndPath(StargateJourney.MODID, "stargate_items"))
 		.build());
 
-	public static RegistryObject<CreativeModeTab> STARGATE_BLOCKS = CREATIVE_MODE_TABS.register("stargate_blocks", () ->
+	public static DeferredHolder<CreativeModeTab, CreativeModeTab> STARGATE_BLOCKS = CREATIVE_MODE_TABS.register("stargate_blocks", () ->
 		CreativeModeTab.builder().icon(() -> new ItemStack(BlockInit.NAQUADAH_BLOCK.get()))
 		.title(Component.translatable("itemGroup.stargate_blocks")).build());
 	

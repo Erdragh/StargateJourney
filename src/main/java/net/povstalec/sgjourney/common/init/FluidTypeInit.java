@@ -4,19 +4,19 @@ import net.minecraft.world.item.Rarity;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.fluids.BaseFlowingFluid;
 import net.neoforged.neoforge.fluids.FluidType;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import net.neoforged.neoforge.registries.ForgeRegistries;
-import net.neoforged.neoforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import net.povstalec.sgjourney.StargateJourney;
 import net.povstalec.sgjourney.common.fluids.HeavyNaquadahFluidType;
 import net.povstalec.sgjourney.common.fluids.NaquadahFluidType;
 
 public class FluidTypeInit
 {
-	public static final DeferredRegister<FluidType> FLUID_TYPES = DeferredRegister.create(ForgeRegistries.Keys.FLUID_TYPES, StargateJourney.MODID);
+	public static final DeferredRegister<FluidType> FLUID_TYPES = DeferredRegister.create(NeoForgeRegistries.Keys.FLUID_TYPES, StargateJourney.MODID);
 	
 	
-	public static final RegistryObject<FluidType> LIQUID_NAQUADAH_FLUID_TYPE = FLUID_TYPES.register("liquid_naquadah", () -> 
+	public static final DeferredHolder<FluidType, FluidType> LIQUID_NAQUADAH_FLUID_TYPE = FLUID_TYPES.register("liquid_naquadah", () ->
 	new NaquadahFluidType(FluidType.Properties.create()
 			.density(100000)
 			.canSwim(false)
@@ -31,7 +31,7 @@ public class FluidTypeInit
 			.slopeFindDistance(2)
 			.levelDecreasePerBlock(2);
 	
-	public static final RegistryObject<FluidType> HEAVY_LIQUID_NAQUADAH_FLUID_TYPE = FLUID_TYPES.register("heavy_liquid_naquadah", () -> 
+	public static final DeferredHolder<FluidType, FluidType> HEAVY_LIQUID_NAQUADAH_FLUID_TYPE = FLUID_TYPES.register("heavy_liquid_naquadah", () ->
 	new HeavyNaquadahFluidType(FluidType.Properties.create()
 			.density(100000)
 			.canSwim(false)

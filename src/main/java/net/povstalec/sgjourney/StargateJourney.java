@@ -3,6 +3,8 @@ package net.povstalec.sgjourney;
 import java.util.Optional;
 import java.util.function.BiFunction;
 
+import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.common.EventBusSubscriber;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -25,8 +27,6 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.neoforged.neoforge.client.ConfigScreenHandler;
 import net.neoforged.neoforge.client.event.RegisterClientReloadListenersEvent;
 import net.neoforged.neoforge.client.event.RegisterDimensionSpecialEffectsEvent;
 import net.neoforged.neoforge.common.NeoForge;
@@ -101,10 +101,8 @@ public class StargateJourney
     
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    public StargateJourney()
+    public StargateJourney(IEventBus eventBus, ModContainer modContainer)
     {
-    	IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
-    	
     	ItemInit.register(eventBus);
         BlockInit.register(eventBus);
         FluidInit.register(eventBus);
@@ -142,8 +140,8 @@ public class StargateJourney
         eventBus.addListener(Layers::registerLayers);
         eventBus.addListener(TabInit::addCreative);
 		
-		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, StargateJourneyConfig.CLIENT_CONFIG, "sgjourney-client.toml");
-		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, StargateJourneyConfig.COMMON_CONFIG, "sgjourney-common.toml");
+		modContainer.registerConfig(ModConfig.Type.CLIENT, StargateJourneyConfig.CLIENT_CONFIG, "sgjourney-client.toml");
+		modContainer.registerConfig(ModConfig.Type.COMMON, StargateJourneyConfig.COMMON_CONFIG, "sgjourney-common.toml");
 		
 		ModLoadingContext.get().registerExtensionPoint(ConfigScreenHandler.ConfigScreenFactory.class, 
 				() -> new ConfigScreenHandler.ConfigScreenFactory(new BiFunction<Minecraft, Screen, Screen>()
@@ -178,14 +176,14 @@ public class StargateJourney
     	return isOculusLoaded.get();	
     }
 
-    @Mod.EventBusSubscriber(modid = StargateJourney.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+    @EventBusSubscriber(modid = StargateJourney.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents
     {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
-        	ItemProperties.register(ItemInit.VIAL.get(), new ResourceLocation(StargateJourney.MODID, "liquid_naquadah"), new LiquidNaquadahPropertyFunction());
-        	ItemProperties.register(ItemInit.MATOK.get(), new ResourceLocation(StargateJourney.MODID, "open"), new WeaponStatePropertyFunction());
+        	ItemProperties.register(ItemInit.VIAL.get(), ResourceLocation.fromNamespaceAndPath(StargateJourney.MODID, "liquid_naquadah"), new LiquidNaquadahPropertyFunction());
+        	ItemProperties.register(ItemInit.MATOK.get(), ResourceLocation.fromNamespaceAndPath(StargateJourney.MODID, "open"), new WeaponStatePropertyFunction());
         	
             ItemBlockRenderTypes.setRenderLayer(FluidInit.LIQUID_NAQUADAH_SOURCE.get(), RenderType.translucent());
             ItemBlockRenderTypes.setRenderLayer(FluidInit.LIQUID_NAQUADAH_FLOWING.get(), RenderType.translucent());
